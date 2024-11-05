@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS361 Project</title>
+    <!--<script src="/js/main.js"></script>-->
+    <script>
+        function displayHelp(display) {
+    if (display == 'help') {
+        document.getElementById('instructions').style.display = 'block';
+    } else {document.getElementById('instructions').style.display = 'none';}
+}
+function toggleHelp() {
+    if (document.getElementById('instructions').style.display == 'block') {
+        displayHelp('nohelp')
+    } else {displayHelp('help')}
+}
+function modeDisplay (display) {
+    if (display == 'customer') {
+        document.getElementById('customer').style.display = 'block';
+        document.getElementById('worker').style.display = 'none';
+        document.getElementById('prices-but').style.display = 'inline';
+    } else {
+        document.getElementById('customer').style.display = 'none';
+        document.getElementById('worker').style.display = 'block';
+        document.getElementById('prices-but').style.display = 'none';
+        document.getElementById('prices').style.display = 'none';}
+}
+// get rid of toggleMode here and in html and replace html onclick with mode() when fully implement?
+function toggleMode() {
+    if (document.getElementById('customer').style.display == 'block') {
+        modeDisplay('worker')}
+    else { modeDisplay('customer')}
+}
+function priceDisplay (display) {
+    if (display == 'noprices') {
+        document.getElementById('prices').style.display = 'none';
+    }
+    else {document.getElementById('prices').style.display = 'block';}
+}
+function togglePrices() {
+    if (document.getElementById('prices').style.display == 'block') {
+        priceDisplay('noprices')
+    } else {priceDisplay('prices')}
+}
+function initial() {
+    displayHelp('help')
+    modeDisplay('customer')
+    priceDisplay('noprices')
+}
+    </script>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body onload="initial()"> <!--move onload to main? b/c want to use 
+    index for multiple instances without it going to initial conditions...-->
+    {{{body}}}
+</body>
+</html>

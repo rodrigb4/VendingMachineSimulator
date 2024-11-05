@@ -1,0 +1,15 @@
+{
+  "name": "project_code_assignment5",
+  "version": "1.0.0",
+  "description": "",
+  "main": "ui.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Brenda Rodriguez",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1",
+    "express-handlebars": "^8.0.1"
+  }
+}
