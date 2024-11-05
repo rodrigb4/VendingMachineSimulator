@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 // cite use of fs
-// cite idea to use setInterval - james cole
+// cite idea to use setInterval
 // change console log message to be more original?
 console.log('Mode Service listening on mode-service.txt')
 

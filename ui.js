@@ -16,8 +16,8 @@ app.use(express.static('public'))
 
 const fs = require('fs');
 
-// cite idea to use setInterval and indicator variable (changeMode) - james cole
-// cite use of handlebars - node starter guide or other?
+// cite idea to use setInterval and indicator variable (changeMode)
+// cite use of handlebars - node starter guide
 // cite use of readline
 
 // MODE-SERVICE
