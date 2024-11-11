@@ -8,6 +8,7 @@ PORT = 8422;
 app.use(express.static('public'))
 const fs = require('fs');
 
+// keeps track of current mode
 let current_mode = 'customer';
 
 app.get('/', (req, res) => {

@@ -23,6 +23,8 @@ const fs = require('fs');
 
 // MODE-SERVICE
 
+changeMode = false;
+
 async function modeService() {
     try {
         const response = await axios.get('http://localhost:8422');
@@ -52,9 +54,6 @@ async function modeService() {
     }
 }
 
-changeMode = false;
-
-
 app.get('/', function (req, res) {
     res.render('main', {layout : 'index'})
 })
@@ -71,5 +70,6 @@ app.put('/put-mode-ajax', function(req, res) {
 })
 
 app.listen(PORT, function () {
-    console.log('Application is live on http://localhost:' + PORT)
+    console.log('Vending Machine Simulator is live on http://localhost:' + PORT)
 })
+

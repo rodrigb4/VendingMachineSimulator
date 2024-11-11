@@ -15,6 +15,21 @@
         <img src="./img/snack-prices.svg" id="prices">
     </div>
     
+    <div id="keypad-div">
+        <img src="./img/keypad2.svg" id="keypad">
+        <div id="keypad-price"><p>21.50</p></div>
+        <img src="./img/a1.svg" id="a1" onClick="itemCode('A1')">
+        <img src="./img/a2.svg" id="a2" onClick="itemCode('A2')">
+        <img src="./img/a3.svg" id="a3" onClick="itemCode('A3')">
+        <img src="./img/b1.svg" id="b1" onClick="itemCode('B1')">
+        <img src="./img/b2.svg" id="b2" onClick="itemCode('B2')">
+        <img src="./img/b3.svg" id="b3" onClick="itemCode('B3')">
+        <img src="./img/c1.svg" id="c1" onClick="itemCode('C1')">
+        <img src="./img/c2.svg" id="c2" onClick="itemCode('C2')">
+        <img src="./img/c3.svg" id="c3" onClick="itemCode('C3')">
+        <img src="./img/buy.svg" id="buy" onClick="animationBank()">
+    </div>
+
     <div id="bottom-buttons">
         <!--<img src="./img/mode.svg" id="mode" class="bottom-buttons" onClick="mode()">changed from toggleMode()-->
         <!--<form action="/mode" method="POST" class="bottom-buttons" id="mode-form">
@@ -24,6 +39,14 @@
         <img src="./img/mode.svg" id="mode" class="bottom-buttons">
         <img src="./img/help.svg" id="help" class="bottom-buttons" onClick="toggleHelp()">
         <img src="./img/prices-button.svg" id="prices-but" class="bottom-buttons" onClick="togglePrices()">
+    </div>
+
+    <div id="collect-div"><img src="./img/collect.svg" id="collect" onClick="revenue()"></div>
+    <div id="revenue-div">
+        <img src="./img/uncollected.svg" class="revenue">
+        <div id="uncollected-display"><p>0.00</p></div>
+        <img src="./img/collected.svg" class="revenue">
+        <div id="collected-display"><p>0.00</p></div>
     </div>
 
     <img src="./img/customer.svg" id="customer">

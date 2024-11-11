@@ -12,6 +12,62 @@ body {
     grid-template-rows: [one-r] 60px [onetwo-r] 40px [two-r] 75px [three-r] 200px [four-r] 180px [five-r] 80px [six-r] 50px [seven-r] auto [last-r];
 }
 
+#revenue-div {
+    position: relative;
+    grid-column-start: fivesix;
+    grid-column-end: nine;
+    grid-row-start: seven-r;
+    grid-row-end: last-r;
+}
+
+.revenue {
+    width: 175px;
+    position: relative;
+}
+
+#uncollected-display {
+    width: 160px;
+    color: rgb(172, 235, 172);
+    font-family: "Orbitron", "VT323";
+    font-weight: 400;
+    font-style: normal;
+    font-size: 160%;
+    direction: rtl;
+    position: absolute;
+    top: .18em;
+    left: .18em;
+    z-index: 10;
+}
+
+
+#collected-display {
+    width: 160px;
+    color: rgb(172, 235, 172);
+    font-family: "Orbitron", "VT323";
+    font-weight: 400;
+    font-style: normal;
+    font-size: 160%;
+    direction: rtl;
+    position: absolute;
+    position: absolute;
+    top: .18em;
+    left: 7.2em;
+    z-index: 10;
+}
+
+#collect-div {
+    width: 70px;
+    grid-column-start: fourfive;
+    grid-column-end: five;
+    grid-row-start: seven-r;
+    grid-row-end: last-r;
+}
+
+#collect {
+    width: 100%;
+    height: auto;
+}
+
 #bottom-buttons {
     grid-column-start: two;
     grid-column-end: fourfive;
@@ -146,6 +202,28 @@ body {
     z-index: 10;
 }
 
+#keypad-div {
+    position: relative;
+    grid-column-start: nine;
+    grid-column-end: eleven;
+    grid-row-start: two-r;
+    grid-row-end: three-r;
+}
+
+#keypad-price {
+    width: 180px;
+    position: absolute;
+    color: rgb(226, 237, 238);
+    font-family: "Orbitron", "VT323";
+    font-weight: 400;
+    font-style: normal;
+    font-size: 220%;
+    direction: rtl;
+    top: .6em;
+    left: 2em;
+    z-index: 10;
+}
+
 #a1 {
     width: 57px;
     height: auto;
@@ -242,4 +320,49 @@ body {
     grid-row-start: seven-r;
     grid-row-end: last-r;
     width: 230px;
+}
+
+.row-1-anim {
+    animation: row-1;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+}
+
+.row-2-anim {
+    animation: row-2;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+}
+
+.row-3-anim {
+    animation: row-3;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+}
+
+@keyframes row-1 {
+    0% {
+        transform: translateY(0%);
+    }
+    100% {
+        transform: translateY(35vh);
+    }
+}
+
+@keyframes row-2 {
+    0% {
+        transform: translateY(0%);
+    }
+    100% {
+        transform: translateY(21vh);
+    }
+}
+
+@keyframes row-3 {
+    0% {
+        transform: translateY(0%);
+    }
+    100% {
+        transform: translateY(6vh);
+    }
 }

@@ -19,13 +19,38 @@ function modeDisplay (display) {
         document.getElementById('customer').style.display = 'block';
         document.getElementById('worker').style.display = 'none';
         document.getElementById('prices-but').style.display = 'inline';
+        document.getElementById('keypad').style.display = 'block';
+        document.getElementById('collect').style.display = 'none';
+        document.getElementById('keypad-price').style.display = 'block';
+        document.getElementById('a1').style.display = 'block';
+        document.getElementById('a2').style.display = 'block';
+        document.getElementById('a3').style.display = 'block';
+        document.getElementById('b1').style.display = 'block';
+        document.getElementById('b2').style.display = 'block';
+        document.getElementById('b3').style.display = 'block';
+        document.getElementById('c1').style.display = 'block';
+        document.getElementById('c2').style.display = 'block';
+        document.getElementById('c3').style.display = 'block';
+        document.getElementById('buy').style.display = 'block';
     }
     else {
         document.getElementById('customer').style.display = 'none';
         document.getElementById('worker').style.display = 'block';
         document.getElementById('prices-but').style.display = 'none';
         document.getElementById('prices').style.display = 'none';
-
+        document.getElementById('keypad').style.display = 'none';
+        document.getElementById('collect').style.display = 'block';
+        document.getElementById('keypad-price').style.display = 'none';
+        document.getElementById('a1').style.display = 'none';
+        document.getElementById('a2').style.display = 'none';
+        document.getElementById('a3').style.display = 'none';
+        document.getElementById('b1').style.display = 'none';
+        document.getElementById('b2').style.display = 'none';
+        document.getElementById('b3').style.display = 'none';
+        document.getElementById('c1').style.display = 'none';
+        document.getElementById('c2').style.display = 'none';
+        document.getElementById('c3').style.display = 'none';
+        document.getElementById('buy').style.display = 'none';
     }
 }
 // get rid of toggleMode here and in html and replace html onclick with mode() when fully implement?
