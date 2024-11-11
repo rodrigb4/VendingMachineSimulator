@@ -14,6 +14,7 @@ app.set("views", "./views");
 
 app.use(express.static('public'))
 
+const axios = require('axios');
 const fs = require('fs');
 
 // cite idea to use setInterval and indicator variable (changeMode)
@@ -22,26 +23,16 @@ const fs = require('fs');
 
 // MODE-SERVICE
 
-function mode() { // onClick="mode()"... of mode toggle
-    fs.writeFile('./mode-service.txt', 'toggle', (error) => {
-        if (error) {
-            console.error(error);
-        } 
-    })
-}
-
-changeMode = false;
-setInterval(() => { // so that its regularly checking after mode() called from button click...
-    fs.readFile('./mode-service.txt', 'utf8', (error, toggle) => {
-        if (error) {
-            console.error(error);
-        }
-        if (toggle == 'worker' || toggle == 'customer') {
+async function modeService() {
+    try {
+        const response = await axios.get('http://localhost:8422');
+        //return response.data
+        if (response.data == 'worker' || response.data == 'customer') {
             const rl = readline.createInterface({
                 input: process.stdin,
                 output: process.stdout
             });
-            rl.question("Are you sure you would like to change mode? (yes/no) ", (answer) => {
+            rl.question("Are you sure you would like to change mode? Changing mode will alter available features, as described in the intructions. (yes/no) ", (answer) => {
                 answer = answer.toLowerCase();
                 if (answer === 'yes') {
                     changeMode = true;
@@ -52,35 +43,31 @@ setInterval(() => { // so that its regularly checking after mode() called from b
                         modeDisplay('worker')
                         // not moving entire code in b/c want function to be global so it can be called through onload
                     }*/
-                } else {
-    
                 }
                 rl.close();
             });
         }
-        fs.writeFile('./mode-service.txt', '', (error) => {
-            if (error) {
-                console.error(error); // to make sure this function doesn't keep testing a lingering number
-            } // move these erasures to beginning? like in example?
-        })
-    })
-}, 1000)
+    } catch (error) {
+        console.error('Error occurred: ', error);
+    }
+}
+
+changeMode = false;
+
 
 app.get('/', function (req, res) {
     res.render('main', {layout : 'index'})
 })
 
 app.put('/put-mode-ajax', function(req, res) {
-    mode()
+    modeService()
     const check = setInterval(() => {
         if (changeMode) {
             changeMode = false;
             clearInterval(check)
             res.send('change')
         }
-    }, 200)
-    // how to alter just one part and leave other parts as needed?
-    // break into a bunch of parts...
+    }, 1500)
 })
 
 app.listen(PORT, function () {

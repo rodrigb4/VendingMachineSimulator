@@ -1,35 +1,25 @@
-const fs = require('fs');
+const express = require('express');
+const app = express();
+app.use(express.json())
+app.use(express.urlencoded({ extended: true}));
 
-// cite use of fs
-// cite idea to use setInterval
-// change console log message to be more original?
-console.log('Mode Service listening on mode-service.txt')
+PORT = 8422;
+
+app.use(express.static('public'))
+const fs = require('fs');
 
 let current_mode = 'customer';
 
-function wait() {
-    fs.readFile('./mode-service.txt', 'utf8', (error, toggle) => {
-        if (error) {
-            console.error(error);
-        }
-        if (toggle == 'toggle' && current_mode == 'customer') {
-            current_mode = 'worker';
-            fs.writeFile('./mode-service.txt', current_mode, (error) => {
-                if (error) {
-                    console.error(error)
-                } // ALSO erase file after read by UI? or fine
-            })
-        } else if (toggle == 'toggle' && current_mode == 'worker') {
-            current_mode = 'customer';
-            fs.writeFile('./mode-service.txt', current_mode, (error) => {
-                if (error) {
-                    console.error(error)
-                } // ALSO erase file after read by UI? or fine
-            })
-        }
-    })
-}
+app.get('/', (req, res) => {
+    if (current_mode == 'customer') {
+        current_mode = 'worker';
+        res.send(current_mode)
+    } else if (current_mode == 'worker') {
+        current_mode = 'customer';
+        res.send(current_mode)
+    }
+})
 
-setInterval(() => {
-    wait();
-}, 1000) // add own delay time? example puts 3000...
+app.listen(PORT, function () {
+    console.log('Service is live on http://localhost:' + PORT)
+})
