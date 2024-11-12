@@ -27,7 +27,6 @@ let changeMode = false; // added let
 async function modeService() {
     try {
         const response = await axios.get('http://localhost:8422');
-        //return response.data
         if (response.data == 'worker' || response.data == 'customer') {
             const rl = readline.createInterface({
                 input: process.stdin,
@@ -60,10 +59,25 @@ async function bankService(item_code) {
         } 
         const response = await axios.post('http://localhost:8423', data);
         const item_price = response.data
-        //console.log(item_price) // shows correct price
+
         if (!isNaN(item_price)) {
-            //console.log(typeof item_price) // does make it inside here
             return item_price
+        } 
+    } catch (error) {
+        console.error('Error occurred: ', error);
+    }
+}
+
+async function collectService(vending_total) {
+    try {
+        let data = {
+            vendingTotal: vending_total
+        } 
+        const response = await axios.post('http://localhost:8424', data);
+        const new_total_collected = response.data
+
+        if (!isNaN(new_total_collected)) {
+            return new_total_collected
         } 
     } catch (error) {
         console.error('Error occurred: ', error);
@@ -90,6 +104,17 @@ app.put('/put-bank-ajax', function(req, res) {
     let item_code = data.itemCode
 
     bankService(item_code).then(val => {
+        res.send(String(val)) 
+    }).catch(e => {
+        console.log(e)
+    })
+})
+
+app.put('/put-collect-ajax', function(req, res) {
+    let data = req.body
+    let vending_total = data.vendingTotal
+
+    collectService(vending_total).then(val => {
         res.send(String(val)) 
     }).catch(e => {
         console.log(e)

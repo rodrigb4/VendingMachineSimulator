@@ -80,6 +80,7 @@ function togglePrices() {
         priceDisplay('prices')
     }
 }
+
 let vending_total = 0.00
 let collected_total = 0.00
 
@@ -87,11 +88,13 @@ function initial() {
     displayHelp('help')
     modeDisplay('customer')
     priceDisplay('noprices')
-    document.getElementById("uncollected-display").innerHTML = vending_total
-    document.getElementById("collected-display").innerHTML = collected_total
+    document.getElementById("uncollected-display").innerHTML = vending_total.toFixed(2)
+    document.getElementById("collected-display").innerHTML = collected_total.toFixed(2)
 }
 // cite 340 for above? or https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp ?
 // cite node starter code for below
+
+// Mode Service xhttp
 const modeImage = document.getElementById("mode");
 
 modeImage.addEventListener("click", function(e) {
@@ -120,6 +123,7 @@ function itemCode(code) { // onClick of individual buttons, sets value of item_c
     item_code = code;
 }
 
+// Bank Service xhttp
 const buyImage = document.getElementById("buy");
 
 buyImage.addEventListener("click", function(e) {
@@ -137,14 +141,45 @@ buyImage.addEventListener("click", function(e) {
 
     xhttp.onreadystatechange = () => {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
-            //parsed = JSON.parse(xhttp.response)
-            //console.log(parsed)
+
             console.log(xhttp.response)
             if (!isNaN(xhttp.response)) {
                 item_code = ''
                 vending_total += Number(xhttp.response)
                 
-                document.getElementById("uncollected-display").innerHTML = vending_total
+                document.getElementById("uncollected-display").innerHTML = vending_total.toFixed(2)
+            }
+        }
+        else if (xhttp.readyState == 4 && xhttp.status != 200) {
+            console.log("An error occurred.")
+        }
+    }
+    xhttp.send(JSON.stringify(data));
+})
+
+
+// Collect Service xhttp
+const collectImage = document.getElementById("collect-div");
+
+collectImage.addEventListener("click", function(e) {
+    e.preventDefault();
+
+    let data = {
+        vendingTotal: vending_total
+    }
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("PUT", "/put-collect-ajax", true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+
+    xhttp.onreadystatechange = () => {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            if (!isNaN(xhttp.response)) {
+                vending_total = 0.00
+                collected_total = Number(xhttp.response)
+                
+                document.getElementById("uncollected-display").innerHTML = vending_total.toFixed(2)
+                document.getElementById("collected-display").innerHTML = collected_total.toFixed(2)
             }
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
