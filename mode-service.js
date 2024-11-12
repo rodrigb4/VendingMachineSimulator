@@ -6,7 +6,6 @@ app.use(express.urlencoded({ extended: true}));
 PORT = 8422;
 
 app.use(express.static('public'))
-const fs = require('fs');
 
 // keeps track of current mode
 let current_mode = 'customer';
@@ -22,5 +21,5 @@ app.get('/', (req, res) => {
 })
 
 app.listen(PORT, function () {
-    console.log('Service is live on http://localhost:' + PORT)
+    console.log('Mode Service is live on http://localhost:' + PORT)
 })

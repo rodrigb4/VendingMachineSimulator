@@ -15,7 +15,6 @@ app.set("views", "./views");
 app.use(express.static('public'))
 
 const axios = require('axios');
-const fs = require('fs');
 
 // cite idea to use setInterval and indicator variable (changeMode)
 // cite use of handlebars - node starter guide
@@ -23,7 +22,7 @@ const fs = require('fs');
 
 // MODE-SERVICE
 
-changeMode = false;
+let changeMode = false; // added let
 
 async function modeService() {
     try {
@@ -54,6 +53,23 @@ async function modeService() {
     }
 }
 
+async function bankService(item_code) {
+    try {
+        let data = {
+            itemCode: item_code
+        } 
+        const response = await axios.post('http://localhost:8423', data);
+        const item_price = response.data
+        //console.log(item_price) // shows correct price
+        if (!isNaN(item_price)) {
+            //console.log(typeof item_price) // does make it inside here
+            return item_price
+        } 
+    } catch (error) {
+        console.error('Error occurred: ', error);
+    }
+}
+
 app.get('/', function (req, res) {
     res.render('main', {layout : 'index'})
 })
@@ -67,6 +83,17 @@ app.put('/put-mode-ajax', function(req, res) {
             res.send('change')
         }
     }, 1500)
+})
+
+app.put('/put-bank-ajax', function(req, res) {
+    let data = req.body
+    let item_code = data.itemCode
+
+    bankService(item_code).then(val => {
+        res.send(String(val)) 
+    }).catch(e => {
+        console.log(e)
+    })
 })
 
 app.listen(PORT, function () {
