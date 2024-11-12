@@ -121,6 +121,17 @@ app.put('/put-collect-ajax', function(req, res) {
     })
 })
 
+app.put('/put-keypad-ajax', function(req, res) {
+    let data = req.body
+    let item_code = data.itemCode
+
+    bankService(item_code).then(val => {
+        res.send(String(val)) 
+    }).catch(e => {
+        console.log(e)
+    })
+})
+
 app.listen(PORT, function () {
     console.log('Vending Machine Simulator is live on http://localhost:' + PORT)
 })

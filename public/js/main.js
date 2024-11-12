@@ -119,8 +119,32 @@ modeImage.addEventListener("click", function(e) {
 
 let item_code = ''
 
+// Keypad Service xhttp
+function keypad () {
+    let data = {
+        itemCode: item_code
+    }
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("PUT", "/put-keypad-ajax", true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+
+    xhttp.onreadystatechange = () => {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            if (!isNaN(xhttp.response)) {
+                document.getElementById("keypad-price").innerHTML = Number(xhttp.response).toFixed(2)
+            }
+        }
+        else if (xhttp.readyState == 4 && xhttp.status != 200) {
+            console.log("An error occurred.")
+        }
+    }
+    xhttp.send(JSON.stringify(data));
+}
+
 function itemCode(code) { // onClick of individual buttons, sets value of item_code...
     item_code = code;
+    keypad()
 }
 
 // Bank Service xhttp
