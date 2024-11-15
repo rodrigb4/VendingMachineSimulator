@@ -6,16 +6,12 @@
     <title>CS361 Project</title>
     <!--<script src="/js/main.js"></script>-->
     <script>
-        function displayHelp(display) {
+function displayHelp(display) {
     if (display == 'help') {
         document.getElementById('instructions').style.display = 'block';
     } else {document.getElementById('instructions').style.display = 'none';}
 }
-function toggleHelp() {
-    if (document.getElementById('instructions').style.display == 'block') {
-        displayHelp('nohelp')
-    } else {displayHelp('help')}
-}
+
 function modeDisplay (display) {
     if (display == 'customer') {
         document.getElementById('customer').style.display = 'block';
@@ -34,11 +30,7 @@ function priceDisplay (display) {
     }
     else {document.getElementById('prices').style.display = 'block';}
 }
-function togglePrices() {
-    if (document.getElementById('prices').style.display == 'block') {
-        priceDisplay('noprices')
-    } else {priceDisplay('prices')}
-}
+
 function initial() {
     displayHelp('help')
     modeDisplay('customer')
