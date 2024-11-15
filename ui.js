@@ -1,12 +1,11 @@
 const express = require('express');
 const app = express();
 app.use(express.json())
-app.use(express.urlencoded({ extended: true}));
+app.use(express.urlencoded({ extended: true }));
 
 PORT = 8421;
 
 const { engine } = require('express-handlebars');
-const readline = require("node:readline");
 
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
@@ -16,37 +15,19 @@ app.use(express.static('public'))
 
 const axios = require('axios');
 
-// cite idea to use setInterval and indicator variable (changeMode)
+
 // cite use of handlebars - node starter guide
-// cite use of readline
+// cite use of async functions?
+
 
 // MODE-SERVICE
-
-let changeMode = false; // added let
 
 async function modeService() {
     try {
         const response = await axios.get('http://localhost:8422');
-        if (response.data == 'worker' || response.data == 'customer') {
-            const rl = readline.createInterface({
-                input: process.stdin,
-                output: process.stdout
-            });
-            rl.question("Are you sure you would like to change mode? Changing mode will alter available features, as described in the intructions. (yes/no) ", (answer) => {
-                answer = answer.toLowerCase();
-                if (answer === 'yes') {
-                    changeMode = true;
-                    /*if (toggle == 'worker') {
-                        modeDisplay('customer')
-                    }
-                    else if (toggle == 'customer') {
-                        modeDisplay('worker')
-                        // not moving entire code in b/c want function to be global so it can be called through onload
-                    }*/
-                }
-                rl.close();
-            });
-        }
+        const potential_new_mode = response.data
+
+        return potential_new_mode
     } catch (error) {
         console.error('Error occurred: ', error);
     }
@@ -84,19 +65,32 @@ async function collectService(vending_total) {
     }
 }
 
+async function animationService(item_code) {
+    try {
+        let data = {
+            itemCode: item_code
+        } 
+        const response = await axios.post('http://localhost:8425', data);
+        const animation_num = response.data
+
+        if (!isNaN(animation_num)) {
+            return animation_num
+        } 
+    } catch (error) {
+        console.error('Error occurred: ', error);
+    }
+}
+
 app.get('/', function (req, res) {
     res.render('main', {layout : 'index'})
 })
 
 app.put('/put-mode-ajax', function(req, res) {
-    modeService()
-    const check = setInterval(() => {
-        if (changeMode) {
-            changeMode = false;
-            clearInterval(check)
-            res.send('change')
-        }
-    }, 1500)
+    modeService().then(new_mode => {
+        res.send(new_mode)
+    }).catch(e => {
+        console.log(e)
+    })
 })
 
 app.put('/put-bank-ajax', function(req, res) {
@@ -126,6 +120,17 @@ app.put('/put-keypad-ajax', function(req, res) {
     let item_code = data.itemCode
 
     bankService(item_code).then(val => {
+        res.send(String(val)) 
+    }).catch(e => {
+        console.log(e)
+    })
+})
+
+app.put('/put-animation-ajax', function(req, res) {
+    let data = req.body
+    let item_code = data.itemCode
+
+    animationService(item_code).then(val => {
         res.send(String(val)) 
     }).catch(e => {
         console.log(e)

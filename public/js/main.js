@@ -106,8 +106,9 @@ modeImage.addEventListener("click", function(e) {
 
     xhttp.onreadystatechange = () => {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
-            if (xhttp.response === 'change') {
-                toggleMode()
+            //console.log(xhttp.response)
+            if (confirm("Are you sure you would like to change mode? Changing mode will alter available features, as described in the intructions.")) {
+                    modeDisplay(xhttp.response) // get rid of if statement?
             }
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
@@ -147,6 +148,67 @@ function itemCode(code) { // onClick of individual buttons, sets value of item_c
     keypad()
 }
 
+// Animation Service xhttp
+function animation () {
+    let data = {
+        itemCode: item_code
+    }
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("PUT", "/put-animation-ajax", true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+
+    xhttp.onreadystatechange = () => {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            if (!isNaN(xhttp.response)) {
+                animation_num = xhttp.response
+                let snack_id = "" // this fine to start with?
+                row_num = 0
+    
+                if (animation_num == 1) {
+                    snack_id = "yel-chips"
+                    row_num = 1
+                } else if (animation_num == 2) {
+                    snack_id = "hot-chips"
+                    row_num = 1
+                } else if (animation_num == 3) {
+                    snack_id = "chz-chips"
+                    row_num = 1
+                } else if (animation_num == 4) {
+                    snack_id = "red-soda"
+                    row_num = 2
+                } else if (animation_num == 5) {
+                    snack_id = "grn-soda"
+                    row_num = 2
+                } else if (animation_num == 6) {
+                    snack_id = "blu-soda"
+                    row_num = 2
+                } else if (animation_num == 7) {
+                    snack_id = "brn-choc"
+                    row_num = 3
+                } else if (animation_num == 8) {
+                    snack_id = "prp-choc"
+                    row_num = 3
+                } else if (animation_num == 9) {
+                    snack_id = "mnt-choc"
+                    row_num = 3
+                }
+                document.getElementById(snack_id).style.zIndex = "13" // this or 12?
+                document.querySelector('#' + snack_id).classList.add("row-" + row_num + "-anim")
+
+                setTimeout(() => {
+                    document.querySelector('#' + snack_id).classList.remove("row-" + row_num + "-anim")
+                    document.getElementById(snack_id).style.zIndex = "10"
+                }, 1000) // less delay?
+            }
+        }
+        else if (xhttp.readyState == 4 && xhttp.status != 200) {
+            console.log("An error occurred.")
+        }
+    }
+    xhttp.send(JSON.stringify(data));
+}
+
 // Bank Service xhttp
 const buyImage = document.getElementById("buy");
 
@@ -154,6 +216,8 @@ buyImage.addEventListener("click", function(e) {
     e.preventDefault();
 
     document.getElementById('keypad-price').innerHTML = ''
+
+    animation() // call to initiate animation xhttp
 
     let data = {
         itemCode: item_code
