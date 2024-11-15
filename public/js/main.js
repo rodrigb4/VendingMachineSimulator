@@ -53,15 +53,7 @@ function modeDisplay (display) {
         document.getElementById('buy').style.display = 'none';
     }
 }
-// get rid of toggleMode here and in html and replace html onclick with mode() when fully implement?
-function toggleMode() {
-    if (document.getElementById('customer').style.display == 'block') {
-        modeDisplay('worker')
-    }
-    else {
-        modeDisplay('customer')
-    }
-}
+
 function priceDisplay (display) {
     if (display == 'noprices') {
         document.getElementById('prices').style.display = 'none';
