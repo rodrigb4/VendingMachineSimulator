@@ -15,9 +15,14 @@ app.use(express.static('public'))
 
 const axios = require('axios');
 
-
-// cite use of handlebars - node starter guide
 // cite use of async functions?
+
+/*
+Citation for use of Handlebars templating
+Date Retrieved: 10/15/2024
+Derived from CS340 NodeJS Starter App code
+Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main
+*/
 
 
 // MODE-SERVICE
@@ -70,8 +75,10 @@ async function animationService(item_code) {
         let data = {
             itemCode: item_code
         } 
-        const response = await axios.post('http://localhost:8425', data);
-        const animation_num = response.data
+        const response = await axios.post('http://127.0.0.1:5000', data); // was http://localhost:8425
+        //const animation_num = response.data // 5000
+        const anim_data = response.data
+        const animation_num = anim_data['animation_code']
 
         if (!isNaN(animation_num)) {
             return animation_num

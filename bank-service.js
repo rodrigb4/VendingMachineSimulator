@@ -7,7 +7,6 @@ PORT = 8423;
 
 app.use(express.static('public'))
 
-// rename to price service?
 app.post('/', (req, res) => {
 
     let data = req.body

@@ -1,3 +1,10 @@
+/*
+Citation for use of element visibility functions below
+Date Retrieved: 10/15/2024
+Adapted from CS340 NodeJS Starter App code
+Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main
+*/
+
 function displayHelp(display) {
     if (display == 'help') {
         document.getElementById('instructions').style.display = 'block';
@@ -83,8 +90,13 @@ function initial() {
     document.getElementById("uncollected-display").innerHTML = vending_total.toFixed(2)
     document.getElementById("collected-display").innerHTML = collected_total.toFixed(2)
 }
-// cite 340 for above? or https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp ?
-// cite node starter code for below
+
+/*
+Citation for use of XMLHttpRequest below
+Date Retrieved: 10/15/2024
+Adapted from CS340 NodeJS Starter App code
+Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main
+*/
 
 // Mode Service xhttp
 const modeImage = document.getElementById("mode");
@@ -98,7 +110,7 @@ modeImage.addEventListener("click", function(e) {
 
     xhttp.onreadystatechange = () => {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
-            //console.log(xhttp.response)
+    
             if (confirm("Are you sure you would like to change mode? Changing mode will alter available features, as described in the intructions.")) {
                     modeDisplay(xhttp.response) // get rid of if statement?
             }

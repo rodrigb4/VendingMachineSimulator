@@ -9,7 +9,7 @@ app.use(express.static('public'))
 
 let total_collected = 0
 
-app.post('/', (req, res) => { // change back to post? let me test req.data issue
+app.post('/', (req, res) => {
 
     let data = req.body
     let vending_total = data.vendingTotal
