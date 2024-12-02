@@ -15,8 +15,6 @@ app.use(express.static('public'))
 
 const axios = require('axios');
 
-// cite use of async functions?
-
 /*
 Citation for use of Handlebars templating
 Date Retrieved: 10/15/2024
