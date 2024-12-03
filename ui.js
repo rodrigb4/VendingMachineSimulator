@@ -36,7 +36,7 @@ async function modeService() {
     }
 }
 
-async function bankService(item_code) {
+async function priceService(item_code) {
     try {
         let data = {
             itemCode: item_code
@@ -98,11 +98,11 @@ app.put('/put-mode-ajax', function(req, res) {
     })
 })
 
-app.put('/put-bank-ajax', function(req, res) {
+app.put('/put-price-ajax', function(req, res) {
     let data = req.body
     let item_code = data.itemCode
 
-    bankService(item_code).then(val => {
+    priceService(item_code).then(val => {
         res.send(String(val)) 
     }).catch(e => {
         console.log(e)
@@ -124,7 +124,7 @@ app.put('/put-keypad-ajax', function(req, res) {
     let data = req.body
     let item_code = data.itemCode
 
-    bankService(item_code).then(val => {
+    priceService(item_code).then(val => {
         res.send(String(val)) 
     }).catch(e => {
         console.log(e)

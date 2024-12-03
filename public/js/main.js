@@ -213,7 +213,7 @@ function animation () {
     xhttp.send(JSON.stringify(data));
 }
 
-// Bank Service xhttp
+// Using Price Service for Vending total xhttp
 const buyImage = document.getElementById("buy");
 
 buyImage.addEventListener("click", function(e) {
@@ -228,7 +228,7 @@ buyImage.addEventListener("click", function(e) {
     }
 
     var xhttp = new XMLHttpRequest();
-    xhttp.open("PUT", "/put-bank-ajax", true);
+    xhttp.open("PUT", "/put-price-ajax", true);
     xhttp.setRequestHeader("Content-type", "application/json");
 
     xhttp.onreadystatechange = () => {
