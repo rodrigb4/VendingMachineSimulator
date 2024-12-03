@@ -11,37 +11,19 @@ app.post('/', (req, res) => {
 
     let data = req.body
     let item_code = data.itemCode
-    
-    let price = 0;
-    
-    if (item_code == 'A1') {
-        price = 1.00;
-    }
-    else if (item_code == 'A2') {
-        price = 1.50;
-    }
-    else if (item_code == 'A3') {
-        price = 1.25;
-    }
-    else if (item_code == 'B1') {
-        price = 1.50;
-    }
-    else if (item_code == 'B2') {
-        price = 1.75;
-    }
-    else if (item_code == 'B3') {
-        price = 2.00;
-    }
-    else if (item_code == 'C1') {
-        price = 2.25;
-    }
-    else if (item_code == 'C2') {
-        price = 2.50;
-    }
-    else if (item_code == 'C3') {
-        price = 2.00;
-    }
-    res.send(String(price))
+
+    prices = {
+        'A1': '1.00', 
+        'A2': '1.50', 
+        'A3': '1.25', 
+        'B1': '1.50', 
+        'B2': '1.75', 
+        'B3': '2.00', 
+        'C1': '2.25', 
+        'C2': '2.50', 
+        'C3': '2.00'};
+
+    res.send(prices[item_code])
 })
 
 app.listen(PORT, function () {

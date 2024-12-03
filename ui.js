@@ -73,8 +73,8 @@ async function animationService(item_code) {
         let data = {
             itemCode: item_code
         } 
-        const response = await axios.post('http://127.0.0.1:5000', data); // was http://localhost:8425
-        //const animation_num = response.data // 5000
+        const response = await axios.post('http://127.0.0.1:5000', data);
+
         const anim_data = response.data
         const animation_num = anim_data['animation_code']
 

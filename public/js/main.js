@@ -89,7 +89,8 @@ function initial() {
     priceDisplay('noprices')
     document.getElementById("uncollected-display").innerHTML = vending_total.toFixed(2)
     document.getElementById("collected-display").innerHTML = collected_total.toFixed(2)
-}
+} 
+
 
 /*
 Citation for use of XMLHttpRequest below
@@ -112,7 +113,7 @@ modeImage.addEventListener("click", function(e) {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
     
             if (confirm("Are you sure you would like to change mode? Changing mode will alter available features, as described in the intructions.")) {
-                    modeDisplay(xhttp.response) // get rid of if statement?
+                modeDisplay(xhttp.response)
             }
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
@@ -147,8 +148,8 @@ function keypad () {
     xhttp.send(JSON.stringify(data));
 }
 
-function itemCode(code) { // onClick of individual buttons, sets value of item_code...
-    item_code = code;
+function itemCode(code) { // onClick of individual buttons, sets value of item_code
+    item_code = code;     // and keypad() to display price on keypad
     keypad()
 }
 
@@ -166,7 +167,7 @@ function animation () {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
             if (!isNaN(xhttp.response)) {
                 animation_num = xhttp.response
-                let snack_id = "" // this fine to start with?
+                let snack_id = ""
                 row_num = 0
     
                 if (animation_num == 1) {
@@ -197,13 +198,13 @@ function animation () {
                     snack_id = "mnt-choc"
                     row_num = 3
                 }
-                document.getElementById(snack_id).style.zIndex = "13" // this or 12?
+                document.getElementById(snack_id).style.zIndex = "13"
                 document.querySelector('#' + snack_id).classList.add("row-" + row_num + "-anim")
 
                 setTimeout(() => {
                     document.querySelector('#' + snack_id).classList.remove("row-" + row_num + "-anim")
                     document.getElementById(snack_id).style.zIndex = "10"
-                }, 1000) // less delay?
+                }, 1000)
             }
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
