@@ -73,14 +73,9 @@ async function animationService(item_code) {
         let data = {
             itemCode: item_code
         } 
-        const response = await axios.post('http://127.0.0.1:5000', data);
+        const response = await axios.post('http://localhost:8425', data);
+        return response.data
 
-        const anim_data = response.data
-        const animation_num = anim_data['animation_code']
-
-        if (!isNaN(animation_num)) {
-            return animation_num
-        } 
     } catch (error) {
         console.error('Error occurred: ', error);
     }
@@ -135,8 +130,8 @@ app.put('/put-animation-ajax', function(req, res) {
     let data = req.body
     let item_code = data.itemCode
 
-    animationService(item_code).then(val => {
-        res.send(String(val)) 
+    animationService(item_code).then(data => {
+        res.send(data) 
     }).catch(e => {
         console.log(e)
     })

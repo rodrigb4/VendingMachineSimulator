@@ -149,7 +149,7 @@ function keypad () {
 }
 
 function itemCode(code) { // onClick of individual buttons, sets value of item_code
-    item_code = code;     // and keypad() to display price on keypad
+    item_code = code;     // and keypad to display price on keypad
     keypad()
 }
 
@@ -165,39 +165,11 @@ function animation () {
 
     xhttp.onreadystatechange = () => {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
-            if (!isNaN(xhttp.response)) {
-                animation_num = xhttp.response
-                let snack_id = ""
-                row_num = 0
-    
-                if (animation_num == 1) {
-                    snack_id = "yel-chips"
-                    row_num = 1
-                } else if (animation_num == 2) {
-                    snack_id = "hot-chips"
-                    row_num = 1
-                } else if (animation_num == 3) {
-                    snack_id = "chz-chips"
-                    row_num = 1
-                } else if (animation_num == 4) {
-                    snack_id = "red-soda"
-                    row_num = 2
-                } else if (animation_num == 5) {
-                    snack_id = "grn-soda"
-                    row_num = 2
-                } else if (animation_num == 6) {
-                    snack_id = "blu-soda"
-                    row_num = 2
-                } else if (animation_num == 7) {
-                    snack_id = "brn-choc"
-                    row_num = 3
-                } else if (animation_num == 8) {
-                    snack_id = "prp-choc"
-                    row_num = 3
-                } else if (animation_num == 9) {
-                    snack_id = "mnt-choc"
-                    row_num = 3
-                }
+            anim_data = JSON.parse(xhttp.response)
+            if ('snack_id' in anim_data) {
+                snack_id = anim_data.snack_id
+                row_num = anim_data.row_num
+
                 document.getElementById(snack_id).style.zIndex = "13"
                 document.querySelector('#' + snack_id).classList.add("row-" + row_num + "-anim")
 
