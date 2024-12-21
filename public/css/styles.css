@@ -103,10 +103,13 @@ body {
     grid-row-end: three-r;
 }
 
-#vending-machine {
-    width: 100%;
+.pos {
     height: auto;
     position: absolute;
+}
+
+#vending-machine {
+    width: 100%;
     top: -5em;
     left: 0;
 }
@@ -129,8 +132,6 @@ body {
 
 #yel-chips {
     width: 64px;
-    height: auto;
-    position: absolute;
     top: 1.12em;
     left: 4.65em;
     z-index: 10;
@@ -138,8 +139,6 @@ body {
 
 #hot-chips {
     width: 64px;
-    height: auto;
-    position: absolute;
     top: 1.12em;
     left: 10.5em;
     z-index: 10;
@@ -147,8 +146,6 @@ body {
 
 #chz-chips {
     width: 64px;
-    height: auto;
-    position: absolute;
     top: 1.12em;
     left: 16.1em;
     z-index: 10;
@@ -156,8 +153,6 @@ body {
 
 #red-soda {
     width: 40.7px;
-    height: auto;
-    position: absolute;
     top: 9.12em;
     left: 5.45em;
     z-index: 10;
@@ -165,8 +160,6 @@ body {
 
 #grn-soda {
     width: 40.7px;
-    height: auto;
-    position: absolute;
     top: 9.12em;
     left: 11.3em;
     z-index: 10;
@@ -174,8 +167,6 @@ body {
 
 #blu-soda {
     width: 40.7px;
-    height: auto;
-    position: absolute;
     top: 9.12em;
     left: 16.9em;
     z-index: 10;
@@ -183,8 +174,6 @@ body {
 
 #brn-choc {
     width: 50.3px;
-    height: auto;
-    position: absolute;
     top: 15.32em;
     left: 4.9em;
     z-index: 10;
@@ -192,8 +181,6 @@ body {
 
 #prp-choc {
     width: 50.3px;
-    height: auto;
-    position: absolute;
     top: 15.32em;
     left: 10.8em;
     z-index: 10;
@@ -201,8 +188,6 @@ body {
 
 #mnt-choc {
     width: 50.3px;
-    height: auto;
-    position: absolute;
     top: 15.33em;
     left: 16.58em;
     z-index: 10;
@@ -232,91 +217,71 @@ body {
 
 #a1 {
     width: 57px;
-    height: auto;
     top: 8.8em;
     left: 2.7em;
-    position: absolute;
     z-index: 10;
 }
 
 #a2 {
     width: 57px;
-    height: auto;
     top: 8.8em;
     left: 7.7em;
-    position: absolute;
     z-index: 10;
 }
 
 #a3 {
     width: 57px;
-    height: auto;
     top: 8.8em;
     left: 12.9em;
-    position: absolute;
     z-index: 10;
 }
 
 #b1 {
     width: 57px;
-    height: auto;
     top: 13.55em;
     left: 2.7em;
-    position: absolute;
     z-index: 10;
 }
 
 #b2 {
     width: 57px;
-    height: auto;
     top: 13.55em;
     left: 7.7em;
-    position: absolute;
     z-index: 10;
 }
 
 #b3 {
     width: 57px;
-    height: auto;
     top: 13.55em;
     left: 12.9em;
-    position: absolute;
     z-index: 10;
 }
 
 #c1 {
     width: 57px;
-    height: auto;
     top: 18.3em;
     left: 2.7em;
-    position: absolute;
     z-index: 10;
 }
 
 #c2 {
     width: 57px;
-    height: auto;
     top: 18.3em;
     left: 7.7em;
-    position: absolute;
     z-index: 10;
 }
 
 #c3 {
     width: 57px;
-    height: auto;
     top: 18.3em;
     left: 12.9em;
-    position: absolute;
     z-index: 10;
 }
 
 #buy {
     width: px;
-    height: auto;
     top: 23.15em;
     left: 6.13em;
-    position: absolute;
     z-index: 10;
 }
 
@@ -330,20 +295,23 @@ body {
 
 .row-1-anim {
     animation: row-1;
-    animation-duration: 1s;
+    animation-duration: .9s;
     animation-iteration-count: 1;
+    animation-timing-function: linear;
 }
 
 .row-2-anim {
     animation: row-2;
-    animation-duration: 1s;
+    animation-duration: .8s;
     animation-iteration-count: 1;
+    animation-timing-function: linear;
 }
 
 .row-3-anim {
     animation: row-3;
-    animation-duration: 1s;
+    animation-duration: .4s;
     animation-iteration-count: 1;
+    animation-timing-function: linear;
 }
 
 @keyframes row-1 {
